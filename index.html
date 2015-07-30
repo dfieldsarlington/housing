@@ -8,7 +8,7 @@
 <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
 
 <style>
-#HHLineChart {    
+#HAffChart {    
 	float: left;
 	top:10px;
 	left:10px;
@@ -19,33 +19,34 @@
 </style>
 </head>
 <body>
-<div id="HHLineChart"></div>
+<div id="HAffChart"></div>
   <script type="text/javascript">
-//Start HHLine Chart
-      var svgHHLine = dimple.newSvg("#HHLineChart", "80%", "90%");
+//Start HAffChart 
+      var svgHAff = dimple.newSvg("#HAffChart", "80%", "90%");
     d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
-      var HHLineChart = new dimple.chart(svgHHLine, data);
+      var HAffChart = new dimple.chart(svgHAff, data);
       // Add your x axis
-      var x = HHLineChart.addCategoryAxis("x", ["Year", "Type"]);
+      var x = HAffChart.addCategoryAxis("x", ["Year", "Type"]);
       // First y axis 
-      var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
+      var y1 = HAffChart.addMeasureAxis("y", "Affordability Ratio");
       // Second y axis
-      var y2 = HHLineChart.addMeasureAxis("y", "Price/Income");
+      var y2 = HAffChart.addMeasureAxis("y", "Price/Income");
       // Plot the bars first - the order of series determines their dom position
       // from back to front, this means bars are at the back.  It's important
       // to note that the string here "Unit Sales" is NOT in the data.  Any string
       // not in the data is just used to apply a label which can be used for colouring
       // as it is here and will also appear in tool tips
-      var bars = HHLineChart.addSeries("Type", dimple.plot.bar, [x,y2]);
+      var bars = HAffChart.addSeries("Type", dimple.plot.bar, [x,y2]);
       // Use a simple line by metric for the other measures
-      var s = HHLineChart.addSeries(null, dimple.plot.line, [x, y1]);
+      var s = HAffChart.addSeries(null, dimple.plot.line, [x, y1]);
       s.interpolation = "cardinal";
       // Do a bit of styling to make it look nicer
       s.lineMarkers = true;
 	  s.lineWeight = 4;
       bars.barGap = 0.2;
       // Colour the bars manually so they don't overwhelm the lines
-      HHLineChart.draw();
+	  HAffChart.addLegend(150, 10, 500, 20, "left");
+      HAffChart.draw();
 	  
       // Once Draw is called, this just changes the number format in the tooltips which for these particular
       // numbers is a little too heavily rounded.  I assume your real data isn't like this
