@@ -38,7 +38,7 @@
       // as it is here and will also appear in tool tips
       var bars = HHLineChart.addSeries("Type", dimple.plot.bar, [x,y2]);
       // Use a simple line by metric for the other measures
-      var s = HHLineChart.addSeries(null, dimple.plot.line, [x, y1]);
+      var s = HHLineChart.addSeries("Affordability Ratio", dimple.plot.line, [x, y1]);
       s.interpolation = "cardinal";
       // Do a bit of styling to make it look nicer
       s.lineMarkers = true;
