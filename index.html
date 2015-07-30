@@ -23,15 +23,12 @@
   <script type="text/javascript">
 //Start HHLine Chart
       var svgHHLine = dimple.newSvg("#HHLineChart", "80%", "90%");
-	  var linedata = [
-	  {0.23, 0.19, 0.17, 0.15}
-	  ];
     d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
       var HHLineChart = new dimple.chart(svgHHLine, data);
       // Add your x axis
       var x = HHLineChart.addCategoryAxis("x", ["Year", "Type"]);
       // First y axis 
-      var y1 = HHLineChart.addMeasureAxis("y", "linedata");
+      var y1 = HHLineChart.addMeasureAxis("y", ["Ratio Year", "Affordability Ratio"]);
       // Second y axis
       var y2 = HHLineChart.addMeasureAxis("y", "Value");
       // Plot the bars first - the order of series determines their dom position
