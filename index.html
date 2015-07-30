@@ -30,7 +30,7 @@
       // First y axis is the combination axis for revenue and profit
       var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
       // Second is the units only
-      var y2 = HHLineChart.addMeasureAxis("y", "Value");
+      var y2 = HHLineChart.addMeasureAxis("y", ["Type", "Value"]);
       // Plot the bars first - the order of series determines their dom position
       // from back to front, this means bars are at the back.  It's important
       // to note that the string here "Unit Sales" is NOT in the data.  Any string
