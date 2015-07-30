@@ -28,7 +28,7 @@
       // Add your x axis
       var x = HHLineChart.addCategoryAxis("x", ["Year", "Type"]);
       // First y axis 
-      var y1 = HHLineChart.addMeasureAxis("y", ["Ratio Year", "Affordability Ratio"]);
+      var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
       // Second y axis
       var y2 = HHLineChart.addMeasureAxis("y", "Value");
       // Plot the bars first - the order of series determines their dom position
@@ -38,7 +38,7 @@
       // as it is here and will also appear in tool tips
       var bars = HHLineChart.addSeries("Type", dimple.plot.bar, [x,y2]);
       // Use a simple line by metric for the other measures
-      var s = HHLineChart.addSeries("Affordability Ratio", dimple.plot.line, [x, y1]);
+      var s = HHLineChart.addSeries(null, dimple.plot.line, [x, y1]);
       s.interpolation = "cardinal";
       // Do a bit of styling to make it look nicer
       s.lineMarkers = true;
