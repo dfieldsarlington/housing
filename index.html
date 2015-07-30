@@ -20,18 +20,16 @@
 </head>
 <body>
 <div id="HHLineChart"></div>
-   <script type="text/javascript">
-      var svgHHLine = dimple.newSvg("#HHLineChart", "70%", "80%");
-    d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
-       var myChart = new dimple.chart(svg, data);
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#HHLineChart", 590, 400);
+    d3.canvassv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
+      var myChart = new dimple.chart(svg, data);
       myChart.setBounds(60, 30, 510, 330)
-      myChart.addCategoryAxis("x", ["Type", "Year"]);
+      myChart.addCategoryAxis("x", ["Year", "Type"]);
       myChart.addMeasureAxis("y", "Value");
-      myChart.addSeries("Value", dimple.plot.bar);
+      myChart.addSeries("Type", dimple.plot.bar);
       myChart.addLegend(65, 10, 510, 20, "right");
       myChart.draw();
     });
-
-  </script>
   </body>
   </html>
