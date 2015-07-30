@@ -26,8 +26,8 @@
       var myChart = new dimple.chart(svg, data);
       myChart.setBounds(60, 30, 510, 330)
       myChart.addCategoryAxis("x", "Year");
-      myChart.addMeasureAxis("y", "Value");
-      myChart.addSeries("Type", dimple.plot.bar);
+      myChart.addMeasureAxis("y", "Type");
+      myChart.addSeries("Value", dimple.plot.bar);
       myChart.addLegend(65, 10, 510, 20, "right");
       myChart.draw();
     });
