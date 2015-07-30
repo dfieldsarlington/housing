@@ -8,7 +8,7 @@
 <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
 
 <style>
-#ScatterChart {    
+#HHLineChart {    
 	float: left;
 	top:10px;
 	left:10px;
@@ -19,25 +19,23 @@
 </style>
 </head>
 <body>
-<div id="ScatterChart"></div>
+<div id="HHLineChart"></div>
    <script type="text/javascript">
       var svgHHLine = dimple.newSvg("#HHLineChart", "70%", "80%");
-    d3.csv("https://raw.githubusercontent.com/dfieldsarlington/demographics/gh-pages/households.csv", function (data) {
-      dimple.filterData(data, "Type", ["Total", "Under 3", "Over 3" ])
+    d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
+      dimple.filterData(data, "Type", ["Median Single Family Sales Price", "Median Household Income" ])
       var HHLineChart = new dimple.chart(svgHHLine, data);
-      
       // Add your x axis - nothing unusual here
       var x = HHLineChart.addCategoryAxis("x", "Year");
       // First y axis is the combination axis for revenue and profit
-      var y1 = HHLineChart.addMeasureAxis("y", "Average Household Size");
+      var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
       // Second is the units only
-      var y2 = HHLineChart.addMeasureAxis("y", "Number of Households");
+      var y2 = HHLineChart.addMeasureAxis("y", "Value");
       // Plot the bars first - the order of series determines their dom position
       // from back to front, this means bars are at the back.  It's important
       // to note that the string here "Unit Sales" is NOT in the data.  Any string
       // not in the data is just used to apply a label which can be used for colouring
       // as it is here and will also appear in tool tips
-      
       var bars = HHLineChart.addSeries(null, dimple.plot.bar, [x,y2]);
       // Use a simple line by metric for the other measures
       var s = HHLineChart.addSeries(null, dimple.plot.line, [x, y1]);
@@ -52,11 +50,11 @@
       x.addOrderRule("Date");
 	  y1.tickFormat = ",d";
       HHLineChart.draw();
-
       // Once Draw is called, this just changes the number format in the tooltips which for these particular
       // numbers is a little too heavily rounded.  I assume your real data isn't like this
       // so you probably won't want this line, but it's a useful tip anyway!
       //y1.tickFormat = ",d";
+	  });
 
   </script>
   </body>
