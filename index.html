@@ -23,12 +23,21 @@
   <script type="text/javascript">
 //Start HHLine Chart
       var svgHHLine = dimple.newSvg("#HHLineChart", "80%", "90%");
-    d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
+    var data = [
+	  {"Year" : "1990",	"Type" : "Median Household Income", "Value" : 79700, "Affordability Ratio" : 23.13},
+	  {"Year" : "1990",	"Type" : "Median Single Family Sales Price", "Value" : 344599},
+	  {"Year" : "2000",	"Type" : "Median Household Income", "Value" : 89169, "Affordability Ratio" : 18.72},
+	  {"Year" : "2000",	"Type" : "Median Single Family Sales Price", "Value" : 476622},
+	  {"Year" : "2010",	"Type" : "Median Household Income", "Value" : 90705, "Affordability Ratio" : 16.84},
+	  {"Year" : "2010",	"Type" : "Median Single Family Sales Price", "Value" : 538680},
+	  {"Year" : "2015",	"Type" : "Median Household Income", "Value" : 89960, "Affordability Ratio" : 14.58},
+	  {"Year" : "2015",	"Type" : "Median Single Family Sales Price", "Value" : 616917},
+	  ];
       var HHLineChart = new dimple.chart(svgHHLine, data);
       // Add your x axis
       var x = HHLineChart.addCategoryAxis("x", ["Year", "Type"]);
       // First y axis 
-      var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
+      var y1 = HHLineChart.addMeasureAxis("y", ["Affordability Ratio", "Year"]);
       // Second y axis
       var y2 = HHLineChart.addMeasureAxis("y", "Value");
       // Plot the bars first - the order of series determines their dom position
