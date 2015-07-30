@@ -22,13 +22,14 @@
 <div id="HHLineChart"></div>
    <script type="text/javascript">
       var svgHHLine = dimple.newSvg("#HHLineChart", "70%", "80%");
+	  var linedata = [0.23, 0.19, 0.17, 0.15]
     d3.csv("https://raw.githubusercontent.com/dfieldsarlington/housing/gh-pages/HousingAffordability.csv", function (data) {
       dimple.filterData(data, "Type", ["Median Single Family Sales Price", "Median Household Income" ])
       var HHLineChart = new dimple.chart(svgHHLine, data);
       // Add your x axis - nothing unusual here
       var x = HHLineChart.addCategoryAxis("x", "Year");
       // First y axis is the combination axis for revenue and profit
-      var y1 = HHLineChart.addMeasureAxis("y", "Affordability Ratio");
+      var y1 = HHLineChart.addMeasureAxis("y", "linedata");
       // Second is the units only
       var y2 = HHLineChart.addMeasureAxis("y", ["Type", "Value"]);
       // Plot the bars first - the order of series determines their dom position
@@ -36,7 +37,7 @@
       // to note that the string here "Unit Sales" is NOT in the data.  Any string
       // not in the data is just used to apply a label which can be used for colouring
       // as it is here and will also appear in tool tips
-      var bars = HHLineChart.addSeries("Type", dimple.plot.bar, [x,y2]);
+      var bars = HHLineChart.addSeries("Value", dimple.plot.bar, [x,y2]);
       // Use a simple line by metric for the other measures
       var s = HHLineChart.addSeries(null, dimple.plot.line, [x, y1]);
       s.interpolation = "cardinal";
